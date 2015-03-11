@@ -8,7 +8,7 @@ var phonecatApp = angular.module('phonecatApp', [
     'phonecatFilters',
     'phonecatServices',
     'restangular',
-    'TestController'
+    'TestModule'
 ]);
 
 phonecatApp.config(['$routeProvider',
@@ -23,7 +23,9 @@ phonecatApp.config(['$routeProvider',
                 controller: 'PhoneDetailCtrl as phoneDetailCtrl'
             }).
             otherwise({
-                templateUrl: 'partials/test.html'
+                templateUrl: 'partials/test.html',
+                controller : 'TestController as ctrl'
+
 
 
             });

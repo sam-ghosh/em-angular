@@ -1,20 +1,67 @@
 <div class="container-fluid">
+
     <h3>Users</h3>
+
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Edit</th>
             <th>First Name</th>
             <th>Last Name</th>
-
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="user in ctrl.users"></tr>
-
+        <tr ng-repeat="user in ctrl.users">
+            <td>
+                <button class="btn" ng-click="ctrl.editUser(user.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>  Edit
+                </button>
+            </td>
+            <td>{{ user.fName }}</td>
+            <td>{{ user.lName }}</td>
+        </tr>
         </tbody>
-
     </table>
 
+    <hr>
+    <button class="btn btn-success" ng-click="ctrl.editUser('new')">
+        <span class="glyphicon glyphicon-user"></span>  Create New User
+    </button>
+    <hr>
+
+    <h3 ng-show="ctrl.edit">Create New User:</h3>
+    <h3 ng-hide="ctrl.edit">Edit User:</h3>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">First Name:</label>
+            <div class="col-sm-10">
+                <input type="text" ng-model="ctrl.fName" ng-disabled="!ctrl.edit" placeholder="First Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Last Name:</label>
+            <div class="col-sm-10">
+                <input type="text" ng-model="ctrl.lName" ng-disabled="!ctrl.edit" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" ng-model="ctrl.passw1" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Repeat:</label>
+            <div class="col-sm-10">
+                <input type="password" ng-model="ctrl.passw2" placeholder="Repeat Password">
+            </div>
+        </div>
+    </form>
+
+    <hr>
+    <button class="btn btn-success" ng-disabled="ctrl.error || ctrl.incomplete" ng-click="ctrl.saveUser()">
+        <span class="glyphicon glyphicon-save"></span>  Save Changes
+    </button>
 
 </div>
